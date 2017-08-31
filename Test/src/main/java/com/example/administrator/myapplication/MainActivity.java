@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import butterknife.BindView;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     @Override
