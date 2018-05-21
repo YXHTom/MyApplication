@@ -5,6 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/Constraint/Constraint.iml" filepath="$PROJECT_DIR$/Constraint/Constraint.iml" />
       <module fileurl="file://$PROJECT_DIR$/FirstModule/FirstModule.iml" filepath="$PROJECT_DIR$/FirstModule/FirstModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RxJava/RxJava.iml" filepath="$PROJECT_DIR$/RxJava/RxJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ToolBar/ToolBar.iml" filepath="$PROJECT_DIR$/ToolBar/ToolBar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myapplication2/myapplication2.iml" filepath="$PROJECT_DIR$/myapplication2/myapplication2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myapplication3/myapplication3.iml" filepath="$PROJECT_DIR$/myapplication3/myapplication3.iml" />
     </modules>
   </component>
 </project>

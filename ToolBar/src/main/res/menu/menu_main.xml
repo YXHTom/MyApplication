@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/app_bar_search"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="搜索"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_cycling"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="骑行"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_other"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="其他"
+        app:showAsAction="never">
+        <menu>
+            <item android:title="骑行" />
+            <item android:title="其他" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/menu_delete"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="删除"
+        app:showAsAction="always|collapseActionView">
+
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:title="group1" />
+                <item android:title="group2" />
+                <item android:title="group3" />
+            </group>
+        </menu>
+    </item>
+
+
+</menu>
+
