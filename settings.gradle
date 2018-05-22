@@ -1,1 +1,1 @@
-include ':FirstModule', ':Constraint', ':myapplication2', ':RxJava', ':ToolBar', ':myapplication3'
+include ':FirstModule', ':Constraint', ':RxJava', ':ToolBar', ':myapplication3', ':DrawerLayout'
