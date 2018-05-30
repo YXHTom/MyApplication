@@ -1,1 +1,1 @@
-include ':FirstModule', ':Constraint', ':RxJava', ':ToolBar', ':myapplication3', ':DrawerLayout'
+include ':FirstModule', ':Constraint', ':RxJava', ':ToolBar', ':BottomNavigationView', ':DrawerLayout', ':WiFiManager', ':ShowPhoto'

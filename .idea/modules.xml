@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/BottomNavigationView/BottomNavigationView.iml" filepath="$PROJECT_DIR$/BottomNavigationView/BottomNavigationView.iml" />
       <module fileurl="file://$PROJECT_DIR$/Constraint/Constraint.iml" filepath="$PROJECT_DIR$/Constraint/Constraint.iml" />
       <module fileurl="file://$PROJECT_DIR$/DrawerLayout/DrawerLayout.iml" filepath="$PROJECT_DIR$/DrawerLayout/DrawerLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/FirstModule/FirstModule.iml" filepath="$PROJECT_DIR$/FirstModule/FirstModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/RxJava/RxJava.iml" filepath="$PROJECT_DIR$/RxJava/RxJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShowPhoto/ShowPhoto.iml" filepath="$PROJECT_DIR$/ShowPhoto/ShowPhoto.iml" />
       <module fileurl="file://$PROJECT_DIR$/ToolBar/ToolBar.iml" filepath="$PROJECT_DIR$/ToolBar/ToolBar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WiFiManager/WiFiManager.iml" filepath="$PROJECT_DIR$/WiFiManager/WiFiManager.iml" />
       <module fileurl="file://D:\OthersProject\GitHup\MyApplication\DrawerLayout\myapplication2.iml" filepath="D:\OthersProject\GitHup\MyApplication\DrawerLayout\myapplication2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myapplication3/myapplication3.iml" filepath="$PROJECT_DIR$/myapplication3/myapplication3.iml" />
+      <module fileurl="file://D:\OthersProject\GitHup\MyApplication\BottomNavigationView\myapplication3.iml" filepath="D:\OthersProject\GitHup\MyApplication\BottomNavigationView\myapplication3.iml" />
     </modules>
   </component>
 </project>

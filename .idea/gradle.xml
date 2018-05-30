@@ -9,12 +9,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/BottomNavigationView" />
             <option value="$PROJECT_DIR$/Constraint" />
             <option value="$PROJECT_DIR$/DrawerLayout" />
             <option value="$PROJECT_DIR$/FirstModule" />
             <option value="$PROJECT_DIR$/RxJava" />
+            <option value="$PROJECT_DIR$/ShowPhoto" />
             <option value="$PROJECT_DIR$/ToolBar" />
-            <option value="$PROJECT_DIR$/myapplication3" />
+            <option value="$PROJECT_DIR$/WiFiManager" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
