@@ -1,15 +1,21 @@
 package com.yy.myapplication;
 
-import android.nfc.Tag;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.BackpressureStrategy;
@@ -22,6 +28,8 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.Scheduler;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -39,20 +47,203 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // origial();
+        findViewById(R.id.btRxLifecycle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RxLifeCycleActivity.class));
+            }
+        });
+        //origial();
         //thread();
         //Map();
         //flatMap();
-        // concatMap();
-        //  Zip();
-//        filter();
-        flowable();
+//        concat();
+        //concatMap();
+        //Zip();
+        //filter();
+        //flowable();
+        //distinct();
+        //buffer();
+        //timer();
+        //interval();
+        // doOnNext();
+//        skip();
+//    take();
+        //  single();
+        //debounce();
+    }
+
+    private void debounce() {
+        Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                e.onNext(0);
+                Thread.sleep(400);
+                e.onNext(1);
+                Thread.sleep(505);
+                e.onNext(2);
+                Thread.sleep(100);
+                e.onNext(3);
+                Thread.sleep(600);
+                e.onNext(4);
+                Thread.sleep(510);
+                e.onNext(5);
+            }
+        })
+                .debounce(500, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Log.d(TAG, integer + "");
+                    }
+                });
+
+    }
+
+    private void single() {
+        Single.just(new Random().nextInt()).subscribe(new SingleObserver<Integer>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(Integer value) {
+                Log.d(TAG, "onSuccess" + value);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "onError->" + e);
+            }
+        });
+    }
+
+    private void take() {
+        Observable.just(1, 2, 3, 4, 5, 6, 7)
+                .take(2)
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Log.d(TAG, integer + "");
+                    }
+                });
+    }
+
+    private void skip() {
+        Observable.just(1, 2, 3, 4, 5, 6, 7)
+                .skip(2)
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Log.d(TAG, integer + "");
+                    }
+                });
+    }
+
+    private void doOnNext() {
+        Observable.just(1, 2, 3, 4)
+                .doOnNext(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Log.d(TAG, "doOnNext->" + integer);
+                    }
+                })
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Log.d(TAG, "accept->" + integer);
+                    }
+                });
+    }
+
+    private void interval() {
+        Log.d(TAG, getDate(System.currentTimeMillis()));
+        Observable.interval(3, 2, TimeUnit.SECONDS).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        Log.d(TAG, aLong + "");
+                        Log.d(TAG, getDate(System.currentTimeMillis()));
+                    }
+                });
+    }
+
+    /**
+     * @author 杨阳
+     * @date 2018/5/31
+     */
+    private void timer() {
+        Log.d(TAG, System.currentTimeMillis() + "");
+        Observable.timer(2, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        Log.d(TAG, aLong + "");
+                        Log.d(TAG, System.currentTimeMillis() + "");
+                    }
+                });
+    }
+
+    private void buffer() {
+        Observable.just(1, 2, 3, 4, 5)
+                .buffer(3, 2)
+                .subscribe(new Consumer<List<Integer>>() {
+                    @Override
+                    public void accept(List<Integer> integers) throws Exception {
+                        Log.d(TAG, integers + "");
+                    }
+                });
+    }
+
+    //去重
+    private void distinct() {
+        Observable.just(1, 2, 3, 4, 5, 6, 7, 8, 9, 4)
+                .distinct()
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Log.d(TAG, integer + "");
+                    }
+                });
+    }
+
+    private void concat() {
+        Observable observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                e.onNext(1);
+                e.onNext(2);
+                e.onNext(3);
+                // e.onError(new Exception());
+                e.onComplete();
+            }
+        });
+        Observable observable2 = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                e.onNext(4);
+                e.onNext(5);
+                e.onNext(6);
+            }
+        });
+        Observable.concat(observable, observable2).subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) throws Exception {
+                Log.d(TAG, integer + "accept");
+            }
+        });
     }
 
     private void flowable() {
         Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override
             public void subscribe(FlowableEmitter<Integer> e) throws Exception {
+                Log.d(TAG, "FlowableEmitter->" + e.requested());
                 Log.d(TAG, "FlowableEmitter1");
                 e.onNext(1);
                 Log.d(TAG, "FlowableEmitter2");
@@ -66,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSubscribe(Subscription s) {
                 Log.d(TAG, "onSubscribe");
-                s.request(2);
+                // s.request(2);
             }
 
             @Override
@@ -352,4 +543,12 @@ public class MainActivity extends AppCompatActivity {
         };
         //observable.subscribe(observer);
     }
+
+    private String getDate(Long time) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        dateFormat.format(new Date(time));
+        return dateFormat.format(new Date(time));
+    }
+
 }
